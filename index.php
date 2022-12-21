@@ -52,6 +52,22 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
     <input type="date" id="task-deadline" name="task-deadline">
     <button type="submit">Create a task</button>
   </form>
+
+  <ul id="task-list">
+    <?php
+    // Read the tasks from the file
+    $tasks = json_decode(file_get_contents('tasks.json'), true);
+    // Loop through the tasks and add them to the list
+    foreach ($tasks as $task) :;
+      echo "<li class='task'>";
+      echo "<h3 class='task-title'>{$task['title']}</h3>";
+      echo "<p class='task-description'>{$task['description']}</p>";
+      echo "<p class='task-deadline'>Deadline: {$task['deadline']}</p>";
+      echo "</li>";
+    endforeach;
+    ?>
+  </ul>
+
   <script src="./scripts/form_validation.js"></script>
 </body>
 
