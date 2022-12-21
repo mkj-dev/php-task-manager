@@ -1,3 +1,35 @@
+<?php
+// PHP code for creating a new task
+
+// Check if the form was submitted
+if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_POST['task-deadline'])) {
+  // Get the task data from the form
+  $title = $_POST['task-title'];
+  $description = $_POST['task-description'];
+  $deadline = $_POST['task-deadline'];
+
+  // Create a new task as an array
+  $task = [
+    'title' => $title,
+    'description' => $description,
+    'deadline' => $deadline,
+  ];
+
+  // Read the tasks from the file
+  $tasks = json_decode(file_get_contents('tasks.json'), true);
+
+  // Add the new task to the array
+  $tasks[] = $task;
+
+  // Write the tasks back to the file
+  file_put_contents('tasks.json', json_encode($tasks));
+
+  // Redirect to the homepage
+  header("Location: index.php");
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
