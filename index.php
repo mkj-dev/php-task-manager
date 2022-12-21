@@ -34,24 +34,25 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task manager</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task manager</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- HTML code for the task creation form -->
-    <form id="task-form" method="post">
-        <label for="task-title">Task title:</label>
-        <input type="text" id="task-title" name="task-title">
-        <label for="task-description">Task description:</label>
-        <textarea id="task-description" name="task-description"></textarea>
-        <label for="task-deadline">Deadline:</label>
-        <input type="date" id="task-deadline" name="task-deadline">
-        <button type="submit">Create a task</button>
-    </form>
+  <!-- HTML code for the task creation form -->
+  <form id="task-form" method="post">
+    <label for="task-title">Task title:</label>
+    <input type="text" id="task-title" name="task-title">
+    <label for="task-description">Task description:</label>
+    <textarea id="task-description" name="task-description"></textarea>
+    <label for="task-deadline">Deadline:</label>
+    <input type="date" id="task-deadline" name="task-deadline">
+    <button type="submit">Create a task</button>
+  </form>
+  <script src="./scripts/form_validation.js"></script>
 </body>
 
 </html>
