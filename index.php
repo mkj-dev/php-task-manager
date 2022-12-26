@@ -42,6 +42,9 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
 </head>
 
 <body>
+  <button id="show-form-btn">Show form</button>
+  <button id="hide-form-btn">Hide form</button>
+
   <!-- HTML code for the task creation form -->
   <form id="task-form" method="post">
     <label for="task-title">Task title:</label>
@@ -52,7 +55,7 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
     <input type="date" id="task-deadline" name="task-deadline">
     <button type="submit">Create a task</button>
   </form>
-  
+
   <div id="container">
     <ul id="task-list">
       <?php
@@ -70,6 +73,7 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
     </ul>
   </div>
   <script src="./scripts/form_validation.js"></script>
+  <script src="./scripts/handle_form_display.js"></script>
 </body>
 
 </html>
