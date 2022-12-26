@@ -74,6 +74,7 @@
 .task-description {
     font-size: 14px;
     margin-right: 10px;
+    overflow-wrap: anywhere;
 }
 
 .task-deadline {
