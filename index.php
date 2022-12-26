@@ -42,18 +42,18 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
 </head>
 
 <body>
+  <!-- HTML code for the task creation form -->
+  <form id="task-form" method="post">
+    <label for="task-title">Task title:</label>
+    <input type="text" id="task-title" name="task-title">
+    <label for="task-description">Task description:</label>
+    <textarea id="task-description" name="task-description"></textarea>
+    <label for="task-deadline">Deadline:</label>
+    <input type="date" id="task-deadline" name="task-deadline">
+    <button type="submit">Create a task</button>
+  </form>
+  
   <div id="container">
-    <!-- HTML code for the task creation form -->
-    <form id="task-form" method="post">
-      <label for="task-title">Task title:</label>
-      <input type="text" id="task-title" name="task-title">
-      <label for="task-description">Task description:</label>
-      <textarea id="task-description" name="task-description"></textarea>
-      <label for="task-deadline">Deadline:</label>
-      <input type="date" id="task-deadline" name="task-deadline">
-      <button type="submit">Create a task</button>
-    </form>
-
     <ul id="task-list">
       <?php
       // Read the tasks from the file
