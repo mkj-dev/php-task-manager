@@ -50,7 +50,7 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
     <label for="task-title">Task title:</label>
     <input type="text" id="task-title" name="task-title">
     <label for="task-description">Task description:</label>
-    <textarea id="task-description" name="task-description"></textarea>
+    <textarea id="task-description" name="task-description" maxlength="200"></textarea>
     <label for="task-deadline">Deadline:</label>
     <input type="date" id="task-deadline" name="task-deadline">
     <button type="submit">Create a task</button>
@@ -62,11 +62,15 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
       // Read the tasks from the file
       $tasks = json_decode(file_get_contents('tasks.json'), true);
       // Loop through the tasks and add them to the list
-      foreach ($tasks as $task) :;
+      foreach ($tasks as $index => $task) :;
         echo "<li class='task'>";
         echo "<h3 class='task-title'>{$task['title']}</h3>";
         echo "<p class='task-description'>{$task['description']}</p>";
         echo "<p class='task-deadline'>Deadline: {$task['deadline']}</p>";
+        // Add the task index to the delete button's data attribute, without it console
+        // displays 'Reference Error Uncaught ReferenceError: index is not defined' after
+        // clicking delete button
+        echo "<button class='delete-btn' data-index='$index'>Delete</button>";
         echo "</li>";
       endforeach;
       ?>
@@ -74,6 +78,34 @@ if (isset($_POST['task-title']) && isset($_POST['task-description']) && isset($_
   </div>
   <script src="./scripts/form_validation.js"></script>
   <script src="./scripts/handle_form_display.js"></script>
+  <script>
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', event => {
+        // In the event listener callback function, retrieve the task index from the delete button's data attribute
+        const index = event.target.getAttribute('data-index');
+        // Send an AJAX request to delete the task
+        fetch('delete_task.php', {
+            method: 'POST',
+            body: JSON.stringify({
+              index: index
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              // Remove the task from the HTML task list
+              event.target.closest('.task').remove();
+            } else {
+              // Show an error message
+              console.log('Error deleting task');
+            }
+          });
+      });
+    });
+  </script>
 </body>
 
 </html>
